@@ -160,28 +160,28 @@ services:
       - action: rebuild
         path: build-context/poetry.lock
         target: /
-  # bot:
-  #   <<: *loader
-  #   environment: 
-  #     <<: *environment
-  #     STREAMLIT_FILE: bot.py
-  #   ports:
-  #     - 8601:8080
+  bot:
+    <<: *loader
+    environment: 
+      <<: *environment
+      STREAMLIT_FILE: bot.py
+    ports:
+      - 8601:8080
 
-  # api:
-  #   <<: *loader
-  #   # environment:
-  #   #   <<: *environment
-  #   # volumes:
-  #   #   - $PWD/embedding_model:/embedding_model
-  #   entrypoint:  [ "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8080" ]
-  #   healthcheck:
-  #     test: ["CMD-SHELL", "curl --fail http://localhost:8080"]
-  #     interval: 5s
-  #     timeout: 3s
-  #     retries: 5
-  #   ports:
-  #     - 8604:8080
+  api:
+    <<: *loader
+    # environment:
+    #   <<: *environment
+    # volumes:
+    #   - $PWD/embedding_model:/embedding_model
+    entrypoint:  [ "uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8080" ]
+    healthcheck:
+      test: ["CMD-SHELL", "curl --fail http://localhost:8080"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+    ports:
+      - 8604:8080
 
 networks:
   net:   
