@@ -24,7 +24,10 @@ embedding_model_name = os.getenv("EMBEDDING_MODEL")
 os.environ["NEO4J_URL"] = url
 
 logger = get_logger(__name__)
-
+import debugpy
+# debugpy.listen(("0.0.0.0",5678)) # host 0.0.0.0 is crucial for docker
+# debugpy.wait_for_client()
+debugpy.breakpoint()
 embeddings, dimension = load_embedding_model(
     embedding_model_name, config={"ollama_base_url": ollama_base_url}, logger=logger
 )
@@ -81,7 +84,7 @@ def calculate_embeddings():
 
 
 def render_page():
-
+    
     with open('auth.yaml') as file:
         config = yaml.load(file, Loader=SafeLoader)
 
@@ -102,7 +105,7 @@ def render_page():
         st.write(f'Welcome *{st.session_state["name"]}*')
         
         datamodel_image = Image.open("./images/datamodel.png")
-        st.header("Create Embeddings")
+        st.header("Create Embeddings - hello world")
         st.subheader(f"For all nodes with label {os.environ['LABEL']} an embedding will be created")
         st.caption("Go to http://localhost:7474/ to explore the graph.")
 
@@ -133,7 +136,5 @@ def render_page():
         st.error('Username/password is incorrect')
     elif st.session_state['authentication_status'] is None:
         st.warning('Please enter your username and password')
-
-
-   
+  
 render_page()

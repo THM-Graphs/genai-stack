@@ -91,6 +91,20 @@ A swagger UI for API documentation is available as well.
 > [!NOTE]
 > The `loader` container is password protected, the password is located in your `auth.yml` file.
 
+## development hints
+
+### hot reloading
+
+The [docker-compose.yml](docker-compose.yml) does have support for [file watch](https://docs.docker.com/compose/how-tos/file-watch/).
+To use it, run `docker compose up --watch --build --remove-orphans`.
+
+### remote debugging
+
+The project supports remote debugging. 
+To use remote debugging install [Python Debugger](https://marketplace.visualstudio.com/items?itemName=ms-python.debugpy) to your VS code.
+To switch on listening for a remote debugger use `DEBUG=true` in your `.env` file.
+If set the debugger exposes port 5678 which the [launch.json](launch.json) file uses.
+
 ***
 
 Original readme below:
