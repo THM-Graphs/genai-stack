@@ -1,4 +1,6 @@
-.*
+.venv/
+.env
+.python-version
 data/**
 !data/.ignore
 logs/**
@@ -9,3 +11,4 @@ embedding_model/*
 .DS_Store
 ollama/
 build-context/auth.yaml
+data-gds/
